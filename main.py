@@ -30,11 +30,21 @@ def create_cook_book(file):
     return cook_book
 
 def get_shop_list_by_dishes(dishes, person_count):
-    pass
+    cook_book = create_cook_book('recipes.txt')
+    shop_list_by_dishes = {}
+    for dishe in dishes:
+        if dishe in cook_book:
+            for indigrient in cook_book[dishe]:
+                shop_list_by_dishes[indigrient['ingredient_name']] = {'measure': indigrient['measure'], 'quantity': indigrient['quantity']*person_count}
+    return shop_list_by_dishes
+
+
+
 
 
 
 
 cook_book = create_cook_book('recipes.txt')
-print(cook_book)
-
+#print(cook_book)
+shop_list_by_dishes = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+print(shop_list_by_dishes)

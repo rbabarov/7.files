@@ -54,9 +54,12 @@ shop_list_by_dishes = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 
 
 #Задача 3
 
-file1 = open('1.txt', 'r', encoding='utf-8').readlines()
-file2 = open('2.txt', 'r', encoding='utf-8').readlines()
-file3 = open('3.txt', 'r', encoding='utf-8').readlines()
+file_open1 = open('1.txt', 'r', encoding='utf-8')
+file1 = file_open1.readlines()
+file_open2 = open('2.txt', 'r', encoding='utf-8')
+file2 = file_open2.readlines()
+file_open3 = open('3.txt', 'r', encoding='utf-8')
+file3 = file_open3.readlines()
 
 input = open('input.txt', 'w')
 input.close()
@@ -84,6 +87,9 @@ for key,value in sorted_dict.items():
     for line in value:
         write_file(line)
 
-print(open('input.txt', 'r').read())
 
+print(open('input.txt', 'r').read())
+file_open1.close()
+file_open2.close()
+file_open3.close()
 

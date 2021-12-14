@@ -35,7 +35,14 @@ def get_shop_list_by_dishes(dishes, person_count):
     for dishe in dishes:
         if dishe in cook_book:
             for indigrient in cook_book[dishe]:
-                shop_list_by_dishes[indigrient['ingredient_name']] = {'measure': indigrient['measure'], 'quantity': indigrient['quantity']*person_count}
+                if indigrient['ingredient_name'] in shop_list_by_dishes.keys():
+                    oldquantity = shop_list_by_dishes[indigrient['ingredient_name']]['quantity']
+                    newquantity = oldquantity + indigrient['quantity']*person_count
+                    shop_list_by_dishes[indigrient['ingredient_name']] = {'measure': indigrient['measure'], 'quantity': newquantity}
+                else:
+                    shop_list_by_dishes[indigrient['ingredient_name']] = {'measure': indigrient['measure'],
+                                                                           'quantity': indigrient[
+                                                                                           'quantity'] * person_count}
     return shop_list_by_dishes
 
 
@@ -46,5 +53,5 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 cook_book = create_cook_book('recipes.txt')
 #print(cook_book)
-shop_list_by_dishes = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+shop_list_by_dishes = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2)
 print(shop_list_by_dishes)

@@ -1,3 +1,4 @@
+#Задача 1
 def create_cook_book(file):
     cook_book = {}
     str_indigrient = {}
@@ -28,7 +29,7 @@ def create_cook_book(file):
 
 
     return cook_book
-
+#Задача 2
 def get_shop_list_by_dishes(dishes, person_count):
     cook_book = create_cook_book('recipes.txt')
     shop_list_by_dishes = {}
@@ -45,9 +46,44 @@ def get_shop_list_by_dishes(dishes, person_count):
                                                                                            'quantity'] * person_count}
     return shop_list_by_dishes
 
-
-
 cook_book = create_cook_book('recipes.txt')
 #print(cook_book)
 shop_list_by_dishes = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2)
-print(shop_list_by_dishes)
+#print(shop_list_by_dishes)
+
+
+#Задача 3
+
+file1 = open('1.txt', 'r', encoding='utf-8').readlines()
+file2 = open('2.txt', 'r', encoding='utf-8').readlines()
+file3 = open('3.txt', 'r', encoding='utf-8').readlines()
+
+input = open('input.txt', 'w')
+input.close()
+
+list_file = {'1.txt': file1, '2.txt': file2, '3.txt': file3}
+sorted_values = sorted(list_file.values(), reverse=True)
+sorted_dict = {}
+
+for i in sorted_values:
+    for k in list_file.keys():
+        if list_file[k] == i:
+            sorted_dict[k] = list_file[k]
+            break
+
+def write_file(text, linebreak = False):
+    if linebreak:
+        text += '\n'
+    with open('input.txt', 'a') as f:
+        f.write(text)
+
+for key,value in sorted_dict.items():
+    write_file('\n')
+    write_file(key, True)
+    write_file(str(len(list_file[key])), True)
+    for line in value:
+        write_file(line)
+
+print(open('input.txt', 'r').read())
+
+

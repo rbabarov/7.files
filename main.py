@@ -47,10 +47,6 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 
 
-
-
-
-
 cook_book = create_cook_book('recipes.txt')
 #print(cook_book)
 shop_list_by_dishes = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2)
